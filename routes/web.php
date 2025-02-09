@@ -9,6 +9,7 @@ use App\Http\Controllers\kas\AbkKasController;
 use App\Http\Controllers\perusahaan\AbkPerusahaanController;
 use App\Http\Controllers\projek\AbkProjekController;
 use App\Http\Controllers\rekening\AbkRekeningController;
+use App\Http\Controllers\report\AbkReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -89,6 +90,16 @@ Route::middleware(['auth'])->group(function () {
         Route::post('store/kas-besar', [AbkKasController::class, 'store'])->name('store.kas');
         Route::put('update/kas-besar/{id}', [AbkKasController::class, 'update'])->name('update.kas');
         Route::delete('delete/kas-besar/{id}', [AbkKasController::class, 'delete'])->name('delete.kas');
+
+        // REPORT TRANSAKSI PROJEK
+        Route::get('report/transaksi-projek', [AbkReportController::class, 'transaksiProjek'])->name('report.transaksi.projek');
+        Route::get('filter/transaksi-projek', [AbkReportController::class, 'filterTransaksiProjek'])->name('filter.transaksi.projek');
+        Route::get('export-excel/transaksi-projek', [AbkReportController::class, 'exportExcelTransaksiProjek'])->name('export.transaksi.projek');
+
+        // REPORT KAS BESAR
+        Route::get('report/kas-besar', [AbkReportController::class, 'kasBesar'])->name('report.kas.besar');
+        Route::get('filter/kas-besar', [AbkReportController::class, 'filterKasBesar'])->name('filter.kas.besar');
+        Route::get('export-excel/kas-besar', [AbkReportController::class, 'exportExcelKasBesar'])->name('export.kas.besar');
     });
 
     Route::prefix('ap')->name('ap.')->middleware('CekUserLogin:2')->group(function () {

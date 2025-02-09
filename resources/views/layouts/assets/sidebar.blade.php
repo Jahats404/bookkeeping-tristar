@@ -158,16 +158,18 @@
             <span>Kas Besar</span>
         </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item {{ request()->routeIs('abk.report.kas.besar') || request()->routeIs('abk.report.transaksi.projek') ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+            aria-expanded="{{ request()->routeIs('abk.report.kas.besar') || request()->routeIs('abk.report.transaksi.projek') ? 'true' : 'false' }}"
+            aria-controls="collapseTwo">
             <i class="fas fa-fw fa-file-excel"></i>
             <span>Laporan</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse {{ request()->routeIs('abk.report.kas.besar') || request()->routeIs('abk.report.transaksi.projek') ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html">Kas Besar</a>
-                <a class="collapse-item" href="cards.html">Transaksi Projek</a>
+                <a class="collapse-item {{ request()->routeIs('abk.report.kas.besar') ? 'active' : '' }}" href="{{ route('abk.report.kas.besar') }}">Kas Besar</a>
+                <a class="collapse-item {{ request()->routeIs('abk.report.transaksi.projek') ? 'active' : '' }}" href="{{ route('abk.report.transaksi.projek') }}">Transaksi Projek</a>
             </div>
         </div>
     </li>
